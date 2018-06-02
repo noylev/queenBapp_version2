@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/tissue_back"
     android:orientation="vertical"
-    tools:context=".Main1Activity">
+    tools:context=".EditEventActivity_2">
 
 
     <CalendarView
