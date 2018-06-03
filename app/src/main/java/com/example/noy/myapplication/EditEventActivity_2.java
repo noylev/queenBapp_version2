@@ -19,21 +19,25 @@ import java.util.Vector;
 
 
 public class EditEventActivity_2 extends AppCompatActivity {
-    ClassicSingleton app_mangaer_memory = ClassicSingleton.getInstance();
-    Vector<CalendarEvent> calendarEventsVector = app_mangaer_memory.getCalendarEvents();
+    ClassicSingleton app_manager_memory = ClassicSingleton.getInstance();
+    Vector<CalendarEvent> calendarEventsVector = app_manager_memory.getCalendarEvents();
+    Calendar date = Calendar.getInstance();
+    CalendarEvent calendar_event = new CalendarEvent(date, "","none"); //first initialize
+
     Button awesomeButton;
     CalendarView calendarView1;
-    Calendar date = Calendar.getInstance();
     SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
     String curDate = sdf.format(date.getTime());
     EditText event_desc;
-    CalendarEvent calendar_event = new CalendarEvent(date, "","none"); //first initialize
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main1); //settings of design
+        super.onCreate(savedInstanceState);//settings of design -DO NOT TOUCH
+        setContentView(R.layout.activity_main1); //settings of design -DO NOT TOUCH
+
+        calendarEventsVector.add(calendar_event);
         event_desc = findViewById(R.id.event_name);
         final String[] arraySpinner = new String[] {
                 "<none>", "Work", "Study", "Family", "Friends"

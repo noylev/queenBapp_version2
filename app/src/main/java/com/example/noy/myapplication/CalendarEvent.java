@@ -31,8 +31,15 @@ public class CalendarEvent extends Object{
         this.category = category;
     }
 
+    public Calendar get_date(){
+        return this.date;
+    }
     public String get_description(){
         return this.description;
+    }
+
+    public String get_category(){
+        return this.category;
     }
 
 
