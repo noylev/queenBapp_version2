@@ -42,7 +42,7 @@ public class EditEventActivity_2 extends AppCompatActivity {
         final String[] arraySpinner = new String[] {
                 "<none>", "Work", "Study", "Family", "Friends"
         };
-        Spinner spinner_category = findViewById(R.id.spinner_category);
+        final Spinner spinner_category = findViewById(R.id.spinner_category);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, arraySpinner);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -89,10 +89,11 @@ public class EditEventActivity_2 extends AppCompatActivity {
         View.OnClickListener moveToPage3 =new View.OnClickListener(){
             public void onClick(View v) {
 
-                //calendar_event.set_description("noy");
+                calendar_event.set_description(event_desc.getText().toString());
+                calendar_event.set_category(spinner_category.getSelectedItem().toString());
 
                 Intent myIntent = new Intent(EditEventActivity_2.this,ChooseHourActivity_3.class);
-                Toast.makeText(getBaseContext(), event_desc.getText().toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), spinner_category.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
                 //Toast.makeText(getBaseContext(), calendar_event.get_description(), Toast.LENGTH_LONG).show();
                // myIntent.putExtra("EXTRA_SESSION_ID", curDate); //passing the date that was picked to the next page
                 startActivity(myIntent);
