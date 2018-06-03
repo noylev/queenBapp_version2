@@ -60,7 +60,7 @@ public class EditEventActivity_2 extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
+                Log.v("category", (String) parent.getItemAtPosition(position));
                 calendar_event.set_category( parent.getItemAtPosition(position).toString());
             }
 
@@ -75,8 +75,7 @@ public class EditEventActivity_2 extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
                 date.set(month, year, dayOfMonth ,0,0);
-                Toast.makeText(getBaseContext(), "date is : " + date.toString(), Toast.LENGTH_LONG).show();
-                calendarView1.setVisibility(View.INVISIBLE);//once date is selected, set calendar to invisible
+                //calendarView1.setVisibility(View.INVISIBLE);//once date is selected, set calendar to invisible
                 //Intent myIntent = new Intent(EditEventActivity_2.this,ChooseHourActivity_3.class);
                 //myIntent.putExtra("EXTRA_SESSION_ID", date); //passing the date that was picked to the next page
                // startActivity(myIntent);
@@ -90,10 +89,12 @@ public class EditEventActivity_2 extends AppCompatActivity {
         View.OnClickListener moveToPage3 =new View.OnClickListener(){
             public void onClick(View v) {
 
-                calendar_event.set_description("noy");
+                //calendar_event.set_description("noy");
+
                 Intent myIntent = new Intent(EditEventActivity_2.this,ChooseHourActivity_3.class);
-                Toast.makeText(getBaseContext(), calendar_event.get_description(), Toast.LENGTH_LONG).show();
-                myIntent.putExtra("EXTRA_SESSION_ID", curDate); //passing the date that was picked to the next page
+                Toast.makeText(getBaseContext(), event_desc.getText().toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), calendar_event.get_description(), Toast.LENGTH_LONG).show();
+               // myIntent.putExtra("EXTRA_SESSION_ID", curDate); //passing the date that was picked to the next page
                 startActivity(myIntent);
             }
         };
