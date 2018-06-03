@@ -67,35 +67,15 @@ public class EditEventActivity_2 extends AppCompatActivity {
         });
 
         // this function saves the date it receives from the user
-        /*calendarView1.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            public void onSelectedDayChange(CalendarView view, int year, int month,
-                                            int dayOfMonth) {
-                Toast.makeText(getBaseContext(), "button pressed7", Toast.LENGTH_SHORT).show();
-                int d = dayOfMonth;
-                curDate = String.valueOf(d) + String.valueOf(month) + String.valueOf(year);
-                Toast.makeText(getBaseContext(), "date is : " + curDate, Toast.LENGTH_LONG).show();
-                //Toast.makeText(getApplicationContext(), ""+dayOfMonth, Toast.LENGTH_SHORT).show();// TODO Auto-generated method stub
-                calendarView1.setVisibility(View.INVISIBLE);//once date is selected, set calendar to invisible
-                //timepicker1.setVisibility(View.VISIBLE); //once date is selected, set time-picker to visible
-                Intent myIntent = new Intent(EditEventActivity_2.this,ChooseHourActivity_3.class);
-                startActivity(myIntent);
-            }
-        });*/
-
-
-
-        // this function saves the date it receives from the user
         calendarView1.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-
-                Toast.makeText(getBaseContext(), "button pressed7", Toast.LENGTH_SHORT).show();
                 date.set(month, year, dayOfMonth ,0,0);
                 Toast.makeText(getBaseContext(), "date is : " + date.toString(), Toast.LENGTH_LONG).show();
                 calendarView1.setVisibility(View.INVISIBLE);//once date is selected, set calendar to invisible
-                Intent myIntent = new Intent(EditEventActivity_2.this,ChooseHourActivity_3.class);
-                myIntent.putExtra("EXTRA_SESSION_ID", date); //passing the date that was picked to the next page
-                startActivity(myIntent);
+                //Intent myIntent = new Intent(EditEventActivity_2.this,ChooseHourActivity_3.class);
+                //myIntent.putExtra("EXTRA_SESSION_ID", date); //passing the date that was picked to the next page
+               // startActivity(myIntent);
             }
         });
 
@@ -105,10 +85,10 @@ public class EditEventActivity_2 extends AppCompatActivity {
         //this function is moving the user from this page(2) to page 3
         View.OnClickListener moveToPage3 =new View.OnClickListener(){
             public void onClick(View v) {
-                //Toast.makeText(getBaseContext(), "Your Agenda", Toast.LENGTH_LONG).show();
+
                 calendar_event.set_description("noy");
                 Intent myIntent = new Intent(EditEventActivity_2.this,ChooseHourActivity_3.class);
-                System.out.println(calendar_event.get_description());
+                Toast.makeText(getBaseContext(), calendar_event.get_description(), Toast.LENGTH_LONG).show();
                 myIntent.putExtra("EXTRA_SESSION_ID", curDate); //passing the date that was picked to the next page
                 startActivity(myIntent);
             }
@@ -125,7 +105,7 @@ public class EditEventActivity_2 extends AppCompatActivity {
             } else {
                 findViewById(R.id.calendarView).setVisibility(View.INVISIBLE);
             }
-           // Toast.makeText(getBaseContext(), "button pressed", Toast.LENGTH_SHORT).show();
+
         }
     };
 
