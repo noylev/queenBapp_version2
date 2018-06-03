@@ -7,9 +7,9 @@ import java.util.Date;
 
 public class CalendarEvent extends Object{
 
-    Calendar date;
-    String description;
-    String category;
+    private Calendar date;
+    private String description;
+    private String category;
 
     // A normal parametrized constructor
     public CalendarEvent(Calendar date1, String description1, String category) {
@@ -31,6 +31,9 @@ public class CalendarEvent extends Object{
         this.category = category;
     }
 
+    public String get_description(){
+        return this.description;
+    }
 
 
 

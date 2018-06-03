@@ -9,26 +9,32 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Vector;
 
 
 public class EditEventActivity_2 extends AppCompatActivity {
+    ClassicSingleton app_mangaer_memory = ClassicSingleton.getInstance();
+    Vector<CalendarEvent> calendarEventsVector = app_mangaer_memory.getCalendarEvents();
     Button awesomeButton;
     CalendarView calendarView1;
     Calendar date = Calendar.getInstance();
     SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
     String curDate = sdf.format(date.getTime());
+    EditText event_desc;
+    CalendarEvent calendar_event = new CalendarEvent(date, "","none"); //first initialize
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1); //settings of design
-
+        event_desc = findViewById(R.id.event_name);
         final String[] arraySpinner = new String[] {
                 "<none>", "Work", "Study", "Family", "Friends"
         };
@@ -40,7 +46,7 @@ public class EditEventActivity_2 extends AppCompatActivity {
         awesomeButton = findViewById(R.id.selectDate); //points to selectDate button
         awesomeButton.setOnClickListener(myhandler1);
         calendarView1 = findViewById(R.id.calendarView);//points to calendarView
-        final CalendarEvent calendar_event = new CalendarEvent(date, "","none"); //first initialize
+
 
 
 
@@ -51,7 +57,7 @@ public class EditEventActivity_2 extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
-                calendar_event.set_category((String) parent.getItemAtPosition(position));
+                calendar_event.set_category( parent.getItemAtPosition(position).toString());
             }
 
             @Override
@@ -84,7 +90,7 @@ public class EditEventActivity_2 extends AppCompatActivity {
                                             int dayOfMonth) {
 
                 Toast.makeText(getBaseContext(), "button pressed7", Toast.LENGTH_SHORT).show();
-                date.set(month, year, dayOfMonth ,0,00);
+                date.set(month, year, dayOfMonth ,0,0);
                 Toast.makeText(getBaseContext(), "date is : " + date.toString(), Toast.LENGTH_LONG).show();
                 calendarView1.setVisibility(View.INVISIBLE);//once date is selected, set calendar to invisible
                 Intent myIntent = new Intent(EditEventActivity_2.this,ChooseHourActivity_3.class);
@@ -95,22 +101,19 @@ public class EditEventActivity_2 extends AppCompatActivity {
 
 
 
-
-
-        //Toast.makeText(getBaseContext(), "date is lala : " + curDate, Toast.LENGTH_LONG).show();
-
         Button moveToPage = (Button) findViewById(R.id.moveToPage);
         //this function is moving the user from this page(2) to page 3
         View.OnClickListener moveToPage3 =new View.OnClickListener(){
             public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "Your Agenda", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), "Your Agenda", Toast.LENGTH_LONG).show();
+                calendar_event.set_description("noy");
                 Intent myIntent = new Intent(EditEventActivity_2.this,ChooseHourActivity_3.class);
+                System.out.println(calendar_event.get_description());
                 myIntent.putExtra("EXTRA_SESSION_ID", curDate); //passing the date that was picked to the next page
                 startActivity(myIntent);
             }
         };
         moveToPage.setOnClickListener(moveToPage3);
-
 
 
     }
@@ -122,7 +125,7 @@ public class EditEventActivity_2 extends AppCompatActivity {
             } else {
                 findViewById(R.id.calendarView).setVisibility(View.INVISIBLE);
             }
-            Toast.makeText(getBaseContext(), "button pressed", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getBaseContext(), "button pressed", Toast.LENGTH_SHORT).show();
         }
     };
 

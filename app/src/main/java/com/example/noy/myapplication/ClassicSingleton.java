@@ -4,7 +4,7 @@ import java.util.Vector;
 
 public class ClassicSingleton {
 
-    private  Vector<CalendarEvent> calendarEvents = new Vector<CalendarEvent>();
+    private Vector<CalendarEvent> calendarEvents = new Vector<CalendarEvent>();
 
     private static ClassicSingleton instance = null;
 
@@ -18,5 +18,9 @@ public class ClassicSingleton {
             instance = new ClassicSingleton();
         }
         return instance;
+    }
+
+    public Vector<CalendarEvent> getCalendarEvents(){
+        return calendarEvents;
     }
 }
