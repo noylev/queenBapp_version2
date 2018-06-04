@@ -2,14 +2,27 @@ package com.example.noy.myapplication;
 
 import android.os.Bundle;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class CalendarEvent extends Object{
 
-    private Calendar date;
+    private Calendar date = Calendar.getInstance();
     private String description;
     private String category;
+
+    //SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+    //String formatted = format1.format(date.getTime());
+
+
+    public CalendarEvent() {
+
+        this.date = Calendar.getInstance();
+        this.description = null;
+        this.category = null;
+    }
 
     // A normal parametrized constructor
     public CalendarEvent(Calendar date1, String description1, String category) {
@@ -21,6 +34,7 @@ public class CalendarEvent extends Object{
 
     public void set_date(Calendar date){
         this.date = date;
+        //this.date.set(1991,11,17,15,45);
     }
 
     public void set_description(String description){

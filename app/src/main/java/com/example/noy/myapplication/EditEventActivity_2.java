@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Vector;
 
 
@@ -22,12 +23,10 @@ public class EditEventActivity_2 extends AppCompatActivity {
     ClassicSingleton app_manager_memory = ClassicSingleton.getInstance();
     Vector<CalendarEvent> calendarEventsVector = app_manager_memory.getCalendarEvents();
     Calendar date = Calendar.getInstance();
-    CalendarEvent calendar_event = new CalendarEvent(date, "","none"); //first initialize
+    CalendarEvent calendar_event = new CalendarEvent(); //first initialize
 
     Button awesomeButton;
     CalendarView calendarView1;
-    SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
-    String curDate = sdf.format(date.getTime());
     EditText event_desc;
 
 
@@ -56,7 +55,7 @@ public class EditEventActivity_2 extends AppCompatActivity {
 
 
 
-        spinner_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      /*  spinner_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
@@ -69,12 +68,20 @@ public class EditEventActivity_2 extends AppCompatActivity {
                 // TODO Auto-generated method stub
             }
         });
-
+*/
         // this function saves the date it receives from the user
         calendarView1.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-                date.set(month, year, dayOfMonth ,0,0);
+
+                Toast.makeText(getBaseContext(),String.valueOf(year)+String.valueOf(month+1)+String.valueOf(dayOfMonth), Toast.LENGTH_LONG).show();
+                //date.set(year,month,dayOfMonth,0,0);
+
+                date.set(year,month,dayOfMonth);
+
+
+               // calendar_event.set_date(date);
+
                 //calendarView1.setVisibility(View.INVISIBLE);//once date is selected, set calendar to invisible
                 //Intent myIntent = new Intent(EditEventActivity_2.this,ChooseHourActivity_3.class);
                 //myIntent.putExtra("EXTRA_SESSION_ID", date); //passing the date that was picked to the next page
@@ -91,11 +98,10 @@ public class EditEventActivity_2 extends AppCompatActivity {
 
                 calendar_event.set_description(event_desc.getText().toString());
                 calendar_event.set_category(spinner_category.getSelectedItem().toString());
-
+                calendar_event.set_date(date);
+                Toast.makeText(getBaseContext(), calendar_event.get_date().getTime().toString(), Toast.LENGTH_LONG).show();
                 Intent myIntent = new Intent(EditEventActivity_2.this,ChooseHourActivity_3.class);
-                Toast.makeText(getBaseContext(), spinner_category.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
-                //Toast.makeText(getBaseContext(), calendar_event.get_description(), Toast.LENGTH_LONG).show();
-               // myIntent.putExtra("EXTRA_SESSION_ID", curDate); //passing the date that was picked to the next page
+
                 startActivity(myIntent);
             }
         };
