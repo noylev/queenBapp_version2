@@ -34,13 +34,13 @@ public class ChooseHourActivity_3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getBaseContext(), desc, Toast.LENGTH_LONG).show();
-               /* calendar_event = app_manager_memory.find_event_by_desc(desc);
-               /* if(calendar_event == null){
+               calendar_event = app_manager_memory.find_event_by_desc(desc);
+               if(calendar_event == null){
                     Log.i("find_event_by_desc" ,"NULL error - EVENT WAS NOT FOUND IN MEMORY!!!!!");
                 }
                 else{
                     Toast.makeText(getBaseContext(), "function working good", Toast.LENGTH_LONG).show();
-                }*/
+                }
             }
         });
 

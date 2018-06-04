@@ -32,7 +32,7 @@ public class ClassicSingleton {
         CalendarEvent event = null;
         boolean found = false;
         Iterator iterator = this.calendarEvents.iterator();
-        while(iterator.hasNext()||!found){
+        while(iterator.hasNext()&&!found){
             event = (CalendarEvent)iterator.next();
             if(event.get_description() == description)
                 found= true;
