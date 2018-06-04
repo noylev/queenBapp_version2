@@ -12,6 +12,7 @@ import android.widget.PopupWindow;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.Vector;
 
 
@@ -21,6 +22,8 @@ public class ChooseHourActivity_3 extends AppCompatActivity {
     Vector<CalendarEvent> calendarEventsVector = app_manager_memory.getCalendarEvents();
     CalendarEvent calendar_event;
     TimePicker timepicker;
+    int event_hour;
+    int event_minute;
 
 
     @Override
@@ -39,7 +42,10 @@ public class ChooseHourActivity_3 extends AppCompatActivity {
                     Log.i("find_event_by_desc" ,"NULL error - EVENT WAS NOT FOUND IN MEMORY!!!!!");
                 }
                 else{
-                    Toast.makeText(getBaseContext(), "function working good", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getBaseContext(), "function working good", Toast.LENGTH_LONG).show();
+                    calendar_event.get_date().set(Calendar.HOUR,event_hour);
+                    calendar_event.get_date().set(Calendar.MINUTE, event_minute);
+                    Toast.makeText(getBaseContext(), calendar_event.get_date().getTime().toString(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -49,7 +55,8 @@ public class ChooseHourActivity_3 extends AppCompatActivity {
            @Override
            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
                Toast.makeText(getBaseContext(), "hour is : "+String.valueOf(hourOfDay)+":"+String.valueOf(minute), Toast.LENGTH_LONG).show();
-
+               event_hour = hourOfDay;
+               event_minute = minute;
            }
        });
 
