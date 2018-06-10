@@ -2,8 +2,10 @@ package com.example.noy.myapplication;
 
 import android.app.ListActivity;
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +20,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleCursorAdapter;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -39,22 +44,47 @@ public class ListViewLoader extends AppCompatActivity  {
         setContentView(R.layout.activity_list_view_loader);
         listView = findViewById(R.id.listView);
         stringArrayList = new ArrayList<String>();
+        int index = 0;
+        String eventDesc = "";
+        while ((eventDesc = getFromPreferences("" + index)) != null){
+            stringArrayList.add(eventDesc);
+            index++;
+        }
         Iterator iterator = calendarEventsVector.iterator();
         if(calendarEventsVector!=null) {
-            Log.i("debug", "**********************************************");
             while (iterator.hasNext()) {
                 CalendarEvent event = (CalendarEvent) iterator.next();
                 stringArrayList.add(event.get_description());
-                Log.i("iterator", event.get_description());
             }
         }
         stringArrayAdapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,stringArrayList);
+
         listView.setAdapter(stringArrayAdapter);
 
+        for (int i=0; i<stringArrayList.size(); i++){
+            saveToPreferences(stringArrayList.get(i), "" + i);
+        }
+    }
 
-        Log.i("noy", "enters iteration loopppppppp");
+//    private void writeTOJson(){
+//        GsonBuilder gsonb = new GsonBuilder();
+//        Gson mGson = gsonb.create();
+//        String writeValue = mGson.toJson(stringArrayList);
+//        saveToPreferences(writeValue);
+//        Log.e("NOYA", writeValue);
+//    }
 
+    private void saveToPreferences(String saveString, String key){
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(key, saveString);
+        editor.commit();
+    }
 
+    private String getFromPreferences(String key) {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String defaultString = null;
+        String prefString = sharedPref.getString(key, defaultString);
+        return prefString;
     }
 }
-

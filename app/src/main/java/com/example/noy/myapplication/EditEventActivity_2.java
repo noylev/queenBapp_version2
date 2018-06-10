@@ -29,7 +29,7 @@ public class EditEventActivity_2 extends AppCompatActivity {
     CalendarView calendarView1;
     EditText event_desc;
 
-
+//android:background="#00ffffff"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,6 @@ public class EditEventActivity_2 extends AppCompatActivity {
         awesomeButton.setOnClickListener(myhandler1);
         calendarView1 = findViewById(R.id.calendarView);//points to calendarView
         Button moveToPage = (Button) findViewById(R.id.moveToPage);
-       // calendarEventsVector.add(calendar_event);
         event_desc = findViewById(R.id.event_name);
         final String[] arraySpinner = new String[] {
                 "<none>", "Work", "Study", "Family", "Friends"
@@ -62,7 +61,7 @@ public class EditEventActivity_2 extends AppCompatActivity {
         calendarView1.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-                Toast.makeText(getBaseContext(),String.valueOf(year)+String.valueOf(month+1)+String.valueOf(dayOfMonth), Toast.LENGTH_LONG).show();
+               // Toast.makeText(getBaseContext(),String.valueOf(year)+String.valueOf(month+1)+String.valueOf(dayOfMonth), Toast.LENGTH_LONG).show();
                 date.set(year,month,dayOfMonth);
 
             }

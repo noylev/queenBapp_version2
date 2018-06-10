@@ -23,12 +23,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Vector;
 
 
 public class ChooseHourActivity_3 extends AppCompatActivity {
-
     ClassicSingleton app_manager_memory = ClassicSingleton.getInstance();
     Vector<CalendarEvent> calendarEventsVector = app_manager_memory.getCalendarEvents();
     CalendarEvent calendar_event;

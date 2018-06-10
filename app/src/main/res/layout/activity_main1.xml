@@ -47,8 +47,8 @@
         android:layout_height="40dp"
         android:layout_above="@+id/txtview1"
         android:layout_alignParentEnd="true"
-        android:background="#00ffffff"
-        android:dropDownSelector="@android:drawable/arrow_down_float"
+        android:background="@android:color/transparent"
+        android:dropDownSelector="#76e6d3ef"
         android:visibility="visible" />
 
 
@@ -63,7 +63,7 @@
         android:layout_marginTop="72dp"
         android:inputType="textCapSentences|textAutoCorrect"
         android:textColor="@android:color/holo_purple"
-        android:textSize="10sp"
+        android:textSize="14sp"
         android:visibility="visible" />
 
     <TextView
