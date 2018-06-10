@@ -35,7 +35,6 @@ public class CalendarEvent extends Object{
 
     public void set_date(Calendar date){
         this.date = date;
-        //this.date.set(1991,11,17,15,45);
     }
 
     public void set_description(String description){

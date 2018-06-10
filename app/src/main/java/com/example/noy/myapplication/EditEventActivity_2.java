@@ -36,7 +36,12 @@ public class EditEventActivity_2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);//settings of design -DO NOT TOUCH
         setContentView(R.layout.activity_main1); //settings of design -DO NOT TOUCH
 
-        calendarEventsVector.add(calendar_event);
+
+        awesomeButton = findViewById(R.id.selectDate); //points to selectDate button
+        awesomeButton.setOnClickListener(myhandler1);
+        calendarView1 = findViewById(R.id.calendarView);//points to calendarView
+        Button moveToPage = (Button) findViewById(R.id.moveToPage);
+       // calendarEventsVector.add(calendar_event);
         event_desc = findViewById(R.id.event_name);
         final String[] arraySpinner = new String[] {
                 "<none>", "Work", "Study", "Family", "Friends"
@@ -46,9 +51,12 @@ public class EditEventActivity_2 extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, arraySpinner);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner_category.setAdapter(adapter);
-        awesomeButton = findViewById(R.id.selectDate); //points to selectDate button
-        awesomeButton.setOnClickListener(myhandler1);
-        calendarView1 = findViewById(R.id.calendarView);//points to calendarView
+
+
+
+
+
+
 
         // this function saves the date it receives from the user
         calendarView1.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -61,8 +69,6 @@ public class EditEventActivity_2 extends AppCompatActivity {
         });
 
 
-
-        Button moveToPage = (Button) findViewById(R.id.moveToPage);
         //this function is moving the user from this page(2) to page 3
         View.OnClickListener moveToPage3 =new View.OnClickListener(){
             public void onClick(View v) {
@@ -93,6 +99,13 @@ public class EditEventActivity_2 extends AppCompatActivity {
         }
     };
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        CalendarEvent another_new_event = new CalendarEvent();
+        this.calendar_event = another_new_event;
+
+    }
 
 
 }
