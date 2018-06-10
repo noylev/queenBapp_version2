@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".EditEventActivity_2" />
-        <activity android:name=".ChooseHourActivity_3"></activity>
+        <activity android:name=".ChooseHourActivity_3" />
+        <activity android:name=".ListViewLoader"></activity>
     </application>
 
 </manifest>

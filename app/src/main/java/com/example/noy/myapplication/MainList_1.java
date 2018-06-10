@@ -6,14 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.Iterator;
 import java.util.Vector;
 
 
-public class MainList_1 extends AppCompatActivity {
+public class MainList_1 extends AppCompatActivity  {
     ClassicSingleton app_manager_memory = ClassicSingleton.getInstance();
     Vector<CalendarEvent> calendarEventsVector = app_manager_memory.getCalendarEvents();
 
@@ -22,7 +19,7 @@ public class MainList_1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);//settings of design -DO NOT TOUCH
         setContentView(R.layout.activity_main);//settings of design -DO NOT TOUCH
 
-        setEventListDisplay();
+
         Button button = (Button) findViewById(R.id.button);
 
         View.OnClickListener myHandler=new View.OnClickListener(){
@@ -36,15 +33,7 @@ public class MainList_1 extends AppCompatActivity {
     }
 
 
-    public void setEventListDisplay(){
-        ListView eventList = findViewById(R.id.eventList);
-        Iterator iterator = calendarEventsVector.iterator();
-        Log.i("noy", "enters iteration loopppppppp");
-        while(iterator.hasNext()){
-            CalendarEvent event = (CalendarEvent)iterator.next();
-            Log.i("iterator" ,event.get_description());
-        }
-    }
+
 }
 
 
